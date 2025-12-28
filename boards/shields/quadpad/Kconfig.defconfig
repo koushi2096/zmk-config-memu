@@ -1,0 +1,6 @@
+if SHIELD_QUADPAD
+
+config ZMK_KEYBOARD_NAME
+    default "Quad Pad"
+
+endif
