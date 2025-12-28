@@ -1,9 +1,10 @@
-# This file generates the GitHub Actions matrix.
-# For simple board + shield combinations, add them to the top level board and
-# shield arrays, for more control, add individual board + shield combinations
-# to the `include` property. You can also use the `cmake-args` property to
-# pass flags to the build command, `snippet` to add a Zephyr snippet, and
-# `artifact-name` to assign a name to distinguish build outputs from each other:
+# このファイルは GitHub Actions のマトリックスを生成します。
+# シンプルな board + shield の組み合わせの場合は、上位の board と
+# shield 配列に追加してください。より細かく制御したい場合は、
+# 個別の board + shield の組み合わせを `include` プロパティに追加します。
+# また、`cmake-args` プロパティを使ってビルドコマンドにフラグを渡したり、
+# `snippet` を使って Zephyr のスニペットを追加したり、
+# `artifact-name` を使ってビルド成果物を区別する名前を割り当てることもできます。
 #
 # board: [ "nice_nano" ]
 # shield: [ "corne_left", "corne_right" ]
@@ -17,4 +18,7 @@
 #     cmake-args: -DCONFIG_ZMK_STUDIO=y
 #     artifact-name: corne_left_with_studio
 #
+
 ---
+board: [ "nice_nano" ]
+shield: [ "quadpad" ]
