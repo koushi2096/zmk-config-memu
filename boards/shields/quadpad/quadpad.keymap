@@ -3,20 +3,26 @@
 #include <dt-bindings/zmk/mouse.h>
 
 / {
+    // --- ここを追加：マウスの動きを定義する ---
+    behaviors {
+        hwl: wheel_encoder {
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            bindings = <&msc MS_WH_UP>, <&msc MS_WH_DN>;
+            tap-ms = <18>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
-
-        default_layer { // Layer 0
-            // -------------------------
-            // |     A     |     B     |
-            // |     C     |     D     |
+        default_layer {
             bindings = <
                 &kp A    &kp B
                 &kp C    &kp D
             >;
 
-            // 【修正箇所】inc_dec_kp を inc_dec_msc に変更
-            sensor-bindings = <&inc_dec_msc MS_WH_UP MS_WH_DN>;
+            // 定義した「hwl」をここで呼び出す
+            sensor-bindings = <&hwl>;
         };
     };
 };
