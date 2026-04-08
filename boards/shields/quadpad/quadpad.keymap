@@ -3,13 +3,13 @@
 #include <dt-bindings/zmk/mouse.h>
 
 / {
-    // --- ここを追加：マウスの動きを定義する ---
     behaviors {
         hwl: wheel_encoder {
             compatible = "zmk,behavior-sensor-rotate";
             #sensor-binding-cells = <0>;
+            // マウススクロールを割り当て
             bindings = <&msc MS_WH_UP>, <&msc MS_WH_DN>;
-            tap-ms = <18>;
+            tap-ms = <20>;
         };
     };
 
@@ -21,7 +21,6 @@
                 &kp C    &kp D
             >;
 
-            // 定義した「hwl」をここで呼び出す
             sensor-bindings = <&hwl>;
         };
     };
