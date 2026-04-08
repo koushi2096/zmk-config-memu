@@ -16,35 +16,49 @@
             , <&gpio0 31 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
             ;
     };
+
+    // --- ここからエンコーダーの設定追加 ---
+    left_encoder: encoder_left {
+        compatible = "alps,ec11";
+        label = "LEFT_ENCODER";
+        // 指定された GPIO 0.11 と 1.00 を設定
+        a-gpios = <&gpio0 11 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+        b-gpios = <&gpio1 0 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+        steps = <80>;
+    };
+
+    sensors {
+        compatible = "zmk,keymap-sensors";
+        sensors = <&left_encoder>;
+        triggers-per-rotation = <20>;
+    };
+    // --- ここまで ---
 };
 
 
 / {
     default_transform: keymap_transform0 {
         compatible = "zmk,matrix-transform";
-        columns = <2>; // Length of the "col-gpios" array
-        rows = <2>; // Length of the "row-gpios" array
+        columns = <2>; 
+        rows = <2>; 
         map = <
-        //   Key 1 | Key 2 
             RC(0,0) RC(0,1) 
-        //   Key 3 | Key 4 
             RC(1,0) RC(1,1)
         >;
     };
 };
 
 / {
-    physical_layout0: physical_layout_0 { // First physical layout, use different naming for other layouts
+    physical_layout0: physical_layout_0 { 
         compatible = "zmk,physical-layout";
         display-name = "Default Layout";
-        kscan = <&kscan0>; // Label of the kscan node, optional if all layouts use the same
-        transform = <&default_transform>; // Label of the matrix transform for this layout
+        kscan = <&kscan0>; 
+        transform = <&default_transform>; 
     };
 };
 
 / {
     chosen {
         zmk,physical-layout = &physical_layout0;
-        // Other chosen items
     };
 };
